@@ -1,8 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Briefcase, Landmark, GraduationCap, Scale, HeartPulse, Instagram, Twitter, Facebook, Mail, ArrowRight } from "lucide-react";
-import heroImg from "@/assets/hero-protest.jpg";
-import textureImg from "@/assets/manifesto-texture.jpg";
+import logoAsset from "@/assets/logo.png.asset.json";
+import rt1 from "@/assets/roundtable-1.jpg.asset.json";
+import rt2 from "@/assets/roundtable-2.jpg.asset.json";
+import rt3 from "@/assets/roundtable-3.jpg.asset.json";
+import rt4 from "@/assets/roundtable-4.jpg.asset.json";
+import rt5 from "@/assets/roundtable-5.jpg.asset.json";
+
+const LOGO = logoAsset.url;
+const HERO = rt1.url;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -11,6 +18,7 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Economic, Political & Social Justice for people of color. Challenging the status quo at the business roundtable. Join the grassroots movement." },
       { property: "og:title", content: "RIGHTS or RIOTS" },
       { property: "og:description", content: "Fighting for Economic, Political & Social Justice. Empowering through education. Challenging the status quo." },
+      { property: "og:image", content: LOGO },
     ],
   }),
   component: Index,
@@ -36,9 +44,9 @@ function Index() {
     <div className="min-h-screen bg-paper text-ink font-sans">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-paper border-b-2 border-ink">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="#top" className="font-display font-black tracking-tighter text-lg">
-            RIGHTS<span className="text-signal">or</span>RIOTS
+        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+          <a href="#top" className="flex items-center gap-3">
+            <img src={LOGO} alt="RIGHTS or RIOTS logo" className="h-12 w-auto" />
           </a>
           <a
             href="#donate"
@@ -52,25 +60,17 @@ function Index() {
       {/* Hero */}
       <section id="top" className="relative bg-ink text-paper overflow-hidden">
         <div
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: `url(${heroImg})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
+          className="absolute inset-0 opacity-40 grayscale"
+          style={{ backgroundImage: `url(${HERO})`, backgroundSize: "cover", backgroundPosition: "center" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/85 to-ink/40" />
         <div className="relative max-w-7xl mx-auto px-6 py-20 lg:py-28 grid lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7">
             <div className="inline-flex items-center gap-2 border border-signal text-signal px-3 py-1 mb-8 text-xs font-display font-bold tracking-[0.2em] uppercase">
               <span className="w-1.5 h-1.5 bg-signal animate-pulse" /> The Movement Is Now
             </div>
-            <h1 className="font-display font-black uppercase leading-[0.9] tracking-tighter text-[clamp(2.75rem,8vw,7rem)]">
-              Justice,<br />
-              Equal Rights<br />
-              <span className="text-signal">or Riots.</span>
-            </h1>
-            <p className="mt-8 max-w-xl text-lg lg:text-xl text-paper/80 leading-relaxed">
+            <img src={LOGO} alt="RIGHTS or RIOTS" className="mb-8 max-w-md w-full invert" />
+            <p className="mt-2 max-w-xl text-lg lg:text-xl text-paper/80 leading-relaxed">
               Economic, Political & Social Justice for people of color. Challenging the status quo at the business roundtable.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
@@ -134,6 +134,53 @@ function Index() {
         </div>
       </section>
 
+      {/* The Roundtable — image gallery */}
+      <section className="bg-paper">
+        <div className="max-w-7xl mx-auto px-6 py-20 lg:py-24">
+          <div className="flex items-end justify-between mb-12 flex-wrap gap-6">
+            <div>
+              <div className="text-xs font-display font-bold tracking-[0.25em] uppercase text-signal mb-3">The Roundtable</div>
+              <h2 className="font-display font-black text-4xl lg:text-5xl uppercase leading-none tracking-tighter">A Seat at<br/>Every Table.</h2>
+            </div>
+            <p className="text-sm text-ink/60 max-w-sm">Where decisions are made about us — without us. We are arriving. We are organizing. We are leading.</p>
+          </div>
+          <div className="grid grid-cols-12 gap-3 lg:gap-4">
+            <figure className="col-span-12 md:col-span-8 relative overflow-hidden aspect-[16/10] group">
+              <img src={rt1.url} alt="Leaders at a roundtable discussion" className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+              <figcaption className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-ink/90 to-transparent p-6 text-paper">
+                <div className="text-[10px] font-display font-bold tracking-[0.25em] uppercase text-signal">01 — Convene</div>
+                <div className="font-display font-black text-xl uppercase mt-1">Voices at the Table</div>
+              </figcaption>
+            </figure>
+            <figure className="col-span-12 md:col-span-4 relative overflow-hidden aspect-[4/5] group">
+              <img src={rt2.url} alt="Community members organizing" className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+              <figcaption className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-ink/90 to-transparent p-5 text-paper">
+                <div className="text-[10px] font-display font-bold tracking-[0.25em] uppercase text-signal">02 — Community</div>
+                <div className="font-display font-black text-lg uppercase mt-1">We Are the Future</div>
+              </figcaption>
+            </figure>
+            <figure className="col-span-6 md:col-span-4 relative overflow-hidden aspect-square group">
+              <img src={rt3.url} alt="Observer at a strategic meeting" className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+              <figcaption className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-ink/90 to-transparent p-4 text-paper">
+                <div className="text-[10px] font-display font-bold tracking-[0.25em] uppercase text-signal">03 — Observe</div>
+              </figcaption>
+            </figure>
+            <figure className="col-span-6 md:col-span-4 relative overflow-hidden aspect-square group">
+              <img src={rt4.url} alt="Stakeholders in dialogue" className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+              <figcaption className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-ink/90 to-transparent p-4 text-paper">
+                <div className="text-[10px] font-display font-bold tracking-[0.25em] uppercase text-signal">04 — Dialogue</div>
+              </figcaption>
+            </figure>
+            <figure className="col-span-12 md:col-span-4 relative overflow-hidden aspect-square group">
+              <img src={rt5.url} alt="Speaker at a press conference" className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+              <figcaption className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-ink/90 to-transparent p-4 text-paper">
+                <div className="text-[10px] font-display font-bold tracking-[0.25em] uppercase text-signal">05 — Speak</div>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
       {/* Focus Areas */}
       <section className="bg-ink text-paper">
         <div className="max-w-7xl mx-auto px-6 py-20 lg:py-24">
@@ -160,9 +207,10 @@ function Index() {
       <section id="manifesto" className="bg-paper">
         <div className="bg-ink text-paper py-24 lg:py-32 relative overflow-hidden">
           <div
-            className="absolute inset-0 opacity-[0.08] mix-blend-screen"
-            style={{ backgroundImage: `url(${textureImg})`, backgroundSize: "cover" }}
+            className="absolute inset-0 opacity-20 grayscale"
+            style={{ backgroundImage: `url(${rt4.url})`, backgroundSize: "cover", backgroundPosition: "center" }}
           />
+          <div className="absolute inset-0 bg-gradient-to-b from-ink/80 via-ink/95 to-ink" />
           <div className="relative max-w-6xl mx-auto px-6">
             <div className="text-xs font-display font-bold tracking-[0.3em] uppercase text-signal mb-8">The Manifesto</div>
             <blockquote className="font-display font-black uppercase leading-[0.95] tracking-tighter text-[clamp(2.25rem,6vw,5.5rem)]">
@@ -177,21 +225,9 @@ function Index() {
         {/* Three content blocks */}
         <div className="max-w-7xl mx-auto px-6 py-20 lg:py-24 grid md:grid-cols-3 gap-px bg-ink/10">
           {[
-            {
-              tag: "01 / The Challenge",
-              title: "Inaction Is the Enemy.",
-              body: "Our ancestors marched and sang — how far have we come? It is time to rise as humanity. Not later. NOW.",
-            },
-            {
-              tag: "02 / Inclusivity",
-              title: "Your Race Is Not the Enemy.",
-              body: "Black, White, Yellow, or Blue — your mindset is. Your silence is no longer an option.",
-            },
-            {
-              tag: "03 / Africa Sits Quiet",
-              title: "The Roundtable Awaits.",
-              body: "While the world decides our fate, we must seize a seat. We do not ask. We arrive.",
-            },
+            { tag: "01 / The Challenge", title: "Inaction Is the Enemy.", body: "Our ancestors marched and sang — how far have we come? It is time to rise as humanity. Not later. NOW." },
+            { tag: "02 / Inclusivity", title: "Your Race Is Not the Enemy.", body: "Black, White, Yellow, or Blue — your mindset is. Your silence is no longer an option." },
+            { tag: "03 / Africa Sits Quiet", title: "The Roundtable Awaits.", body: "While the world decides our fate, we must seize a seat. We do not ask. We arrive." },
           ].map((b) => (
             <div key={b.tag} className="bg-paper p-8 lg:p-10">
               <div className="text-xs font-display font-bold tracking-[0.25em] uppercase text-signal mb-6">{b.tag}</div>
@@ -231,10 +267,8 @@ function Index() {
       <footer className="bg-ink text-paper">
         <div className="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-10">
           <div>
-            <div className="font-display font-black text-2xl tracking-tighter">
-              RIGHTS<span className="text-signal">or</span>RIOTS
-            </div>
-            <p className="mt-4 text-sm text-paper/60 max-w-xs">A grassroots movement for economic, political, and social justice.</p>
+            <img src={LOGO} alt="RIGHTS or RIOTS" className="h-16 w-auto invert mb-4" />
+            <p className="text-sm text-paper/60 max-w-xs">A grassroots movement for economic, political, and social justice.</p>
           </div>
           <div>
             <div className="text-xs font-display font-bold tracking-[0.25em] uppercase text-signal mb-4">Connect</div>
